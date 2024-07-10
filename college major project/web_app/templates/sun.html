@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport">
+  <title>Document</title>
+</head>
+<style>
+  *{
+  padding:0px ;
+margin: 0%;
+  }
+  .tvscreen {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background:whitesmoke;
+  animation: sunset 4s ease-in-out 1.5s forwards 1, sunrise 4s ease-in-out 10s forwards 1;
+}
+
+.sun {
+  content: "";
+  display: block;
+  border-radius: 50%;
+  background: yellow;
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  animation: pm 8s ease-in-out forwards 1, am 8s ease-in-out 8s forwards 1;
+  
+}
+
+.landscape {
+  position: absolute;
+  bottom: 0%;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+.landscape .hill {
+  content: "";
+  border-radius: 90% 90% 0 0;
+  width: 80%;
+  height: 250px;
+  background: green;
+  position: absolute;
+}
+.landscape .hill.foreground {
+  bottom: 0px;
+  left: -20px;
+  z-index: 100;
+}
+.landscape .hill.background {
+  background: #206020;
+  width: 70%;
+  height: 230px;
+  bottom: 0px;
+  right: -6px;
+  z-index: 50;
+}
+
+@keyframes pm {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  100% {
+    top: 400px;
+    left: 50%;
+  }
+}
+@keyframes am {
+  0% {
+    top: 400px;
+    left: 50%;
+  }
+  100% {
+    top: 0;
+    left: 0;
+  }
+}
+@keyframes sunset {
+  75% {
+    background: gold;
+  }
+  80% {
+    background: DarkGoldenrod1;
+  }
+  90% {
+    background: orchid4;
+  }
+  100% {
+    background: #08082b;
+  }
+}
+@keyframes stars {}
+@keyframes sunrise {
+  0% {
+    background: #08082b;
+  }
+  20% {
+    background: orchid4;
+  }
+  60% {
+    background: DarkGoldenrod1;
+  }
+  70% {
+    background: gold;
+  }
+  100% {
+    background: #d4d4f7;
+  }
+}
+
+</style>
+<body>
+  <div class="tvscreen"> <span style="color: white;">predicted weather is sunny</span>
+    <div class="sun"></div>
+    <div class="landscape">
+      <div class="hill foreground"></div>
+      <div class="hill background"></div>
+    </div>
+  </div>
+</body>
+</html>

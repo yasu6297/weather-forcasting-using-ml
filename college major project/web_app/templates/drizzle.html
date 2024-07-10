@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dirty Drizzle Animation</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #898383, #08080e);
+        }
+
+        .rain {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .rain.back-row {
+            display: none;
+            z-index: 1;
+            bottom: 60px;
+            opacity: 0.5;
+        }
+
+        body.back-row-toggle .rain.back-row {
+            display: block;
+        }
+
+        .drop {
+            position: absolute;
+            bottom: 100%;
+            width: 10px; /* Adjust raindrop width */
+            height: 100px; /* Adjust raindrop height */
+            pointer-events: none;
+            animation: drop 1s linear infinite; /* Adjust animation duration */
+        }
+
+        @keyframes drop {
+            0% {
+                transform: translateY(-5vh); /* Start position above the viewport */
+            }
+            100% {
+                transform: translateY(100vh); /* End position at the bottom of the viewport */
+            }
+        }
+
+        .stem {
+            width: 2px; /* Adjust stem width */
+            height: 60%; /* Adjust stem height */
+            margin-left: 4px; /* Adjust stem margin */
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.25));
+            animation: stem 1s linear infinite; /* Adjust animation duration */
+        }
+
+        @keyframes stem {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .splat {
+            width: 15px; /* Adjust splat width */
+            height: 10px; /* Adjust splat height */
+            border-top: 2px dotted rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            opacity: 1;
+            transform: scale(0);
+            animation: splat 1s linear infinite; /* Adjust animation duration */
+            display: none;
+        }
+
+        body.splat-toggle .splat {
+            display: block;
+        }
+
+        @keyframes splat {
+            0% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            80% {
+                opacity: 1;
+                transform: scale(0);
+            }
+            90% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1.5);
+            }
+        }
+
+        
+
+    
+
+      
+    </style>
+</head>
+<body class="back-row-toggle splat-toggle"> <span style="margin-left:.240%;color: white;font-family: cursive;">chill! little precipitation chances</span>
+    <div class="rain front-row"></div>
+    <div class="rain back-row"></div>
+   
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var makeItRain = function() {
+            // Clear out everything
+            $(".rain").empty();
+            var increment = 0;
+            var drops = "";
+            var backDrops = "";
+            while (increment < 100) {
+                // Couple random numbers to use for various randomizations
+                var randoHundo = Math.floor(Math.random() * (98 - 1 + 1) + 1);
+                var randoFiver = Math.floor(Math.random() * (5 - 2 + 1) + 2);
+                increment += randoFiver;
+                // Add in a new raindrop with various randomizations to certain CSS properties
+                drops += '<div class="drop" style="left: ' +
+                    increment + "%; bottom: " +
+                    (randoFiver + randoFiver - 1 + 100) +
+                    "%; animation-delay: 0." +
+                    randoHundo +
+                    "s; animation-duration: 1." +
+                    randoHundo +
+                    's;"><div class="stem" style="animation-delay: 0.' +
+                    randoHundo +
+                    "s; animation-duration: 1." +
+                    randoHundo +
+                    's;"></div><div class="splat" style="animation-delay: 0.' +
+                    randoHundo +
+                    "s; animation-duration: 1." +
+                    randoHundo +
+                    's;"></div></div>';
+                backDrops += '<div class="drop" style="right: ' +
+                    increment + "%; bottom: " +
+                    (randoFiver + randoFiver - 1 + 100) +
+                    "%; animation-delay: 0." +
+                    randoHundo +
+                    "s; animation-duration: 1." +
+                    randoHundo +
+                    's;"><div class="stem" style="animation-delay: 0.' +
+                    randoHundo +
+                    "s; animation-duration: 1." +
+                    randoHundo +
+                    's;"></div><div class="splat" style="animation-delay: 0.' +
+                    randoHundo +
+                    "s; animation-duration: 1." +
+                    randoHundo +
+                    's;"></div></div>';
+            }
+            $(".rain.front-row").append(drops);
+            $(".rain.back-row").append(backDrops);
+        };
+        $(".splat-toggle.toggle").on("click", function() {
+            $("body").toggleClass("splat-toggle");
+            $(".splat-toggle.toggle").toggleClass("active");
+            makeItRain();
+        });
+        $(".back-row-toggle.toggle").on("click", function() {
+            $("body").toggleClass("back-row-toggle");
+            $(".back-row-toggle.toggle").toggleClass("active");
+            makeItRain();
+        });
+        makeItRain();
+    </script>
+</body>
+</html>

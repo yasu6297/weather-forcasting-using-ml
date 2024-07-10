@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image:url("../static/pexels-pixabay-531767.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            
+        }
+       
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color:none;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            color:white;
+            font-size: larger;
+            font-weight: bolder;
+          
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+           color:skyblue;
+           
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family:cursive;color:whitesmoke;text-align: center;">Weather Prediction</h1>
+    <form action="/predict"  method="post"><h4 style="font-weight:2px;font-family:cursive;color:whitesmoke;text-align: center;">
+        Precipitation(mm)</span><input type="text"style="background:none;" name="precipitation" autocomplete="precipitation"><br><span style="font-family:cursive;color:whitesmoke;text-align: center;">
+        Temperature(C') </span><input type="text" style="background:none;" name="temperature"autocomplete="temperature"><br><span style="font-family:cursive;color:whitesmoke;text-align: center;">
+        Humidity(%)</span><input type="text" style="background:none;" name="humidity"autocomplete="humidity"><br><span style="font-family:cursive;color:whitesmoke;text-align: center;">
+        Wind Speed(km/h)</span> <input type="text" style="background:none;" name="wind_speed"autocomplete="wind_speed"><br><span style="font-family:cursive;color:whitesmoke;text-align: center;">
+        <input type="submit" style="background:none; font-family:cursive"value="Predict Weather">
+    </form>
+</body>
+</html>
